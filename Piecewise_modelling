@@ -1,0 +1,127 @@
+import pandas as pd
+
+import numpy as np
+
+file_path = 'Copy of monthly_utilization.xlsx'
+
+df = pd.read_excel(file_path)
+
+condition1 = df['year'] < 2018
+
+condition2 = df['line'] == 170
+
+combined_condition = condition1 & condition2
+
+filtered_data = df.loc[combined_condition, 'cycles']
+
+data = np.array(filtered_data)
+
+count0, count15, count610, count1115, count1620, count2125, count2630, count3135, count3640, count4145, count4650, count5155, count5660, count6165, count6670, count7175, count7680, count8185, count8690, count9195, count96100, count101105, count106110, count111115, count116120, count121 = 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+
+for numCycles in data:
+
+    if numCycles == 0:
+
+        count0 += 1
+
+    elif numCycles < 6:
+
+        count15 += 1
+
+    elif numCycles < 11:
+
+        count610 += 1
+
+    elif numCycles < 16:
+
+        count1115 += 1
+
+    elif numCycles < 21:
+
+        count1620 += 1
+
+    elif numCycles < 26:
+
+        count2125 += 1
+
+    elif numCycles < 31:
+
+        count2630 += 1
+
+    elif numCycles < 36:
+
+        count3135 += 1
+
+    elif numCycles < 41:
+
+        count3640 += 1
+
+    elif numCycles < 46:
+
+        count4145 += 1
+
+    elif numCycles < 51:
+
+        count4650 += 1
+
+    elif numCycles < 56:
+
+        count5155 += 1
+
+    elif numCycles < 61:
+
+        count5660 += 1
+
+    elif numCycles < 66:
+
+        count6165 += 1
+
+    elif numCycles < 71:
+
+        count6670 += 1
+
+    elif numCycles < 76:
+
+        count7175 += 1
+
+    elif numCycles < 81:
+
+        count7680 += 1
+
+    elif numCycles < 86:
+
+        count8185 += 1
+
+    elif numCycles < 91:
+
+        count8690 += 1
+
+    elif numCycles < 96:
+
+        count9195 += 1
+
+    elif numCycles < 101:
+
+        count96100 += 1
+
+    elif numCycles < 106:
+
+        count101105 += 1
+
+    elif numCycles < 111:
+
+        count106110 += 1
+
+    elif numCycles < 116:
+
+        count111115 += 1
+
+    elif numCycles < 121:
+
+        count116120 += 1
+
+    else:
+
+        count121 += 1
+
+print (count0/len(data), count15/len(data), count610/len(data), count1115/len(data), count1620/len(data), count2125/len(data), count2630/len(data), count3135/len(data), count3640/len(data), count4145/len(data), count4650/len(data), count5155/len(data), count5660/len(data), count6165/len(data), count6670/len(data), count7175/len(data), count7680/len(data), count8185/len(data), count8690/len(data), count9195/len(data), count96100/len(data), count101105/len(data), count106110/len(data), count111115/len(data), count116120/len(data), count121/len(data))
