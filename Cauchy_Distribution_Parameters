@@ -1,1 +1,11 @@
+import numpy as np
+from fitter import Fitter, get_common_distributions, get_distributions
 
+#replace airline name and data
+afa = np.array([1,2,3,4,5,6,7,8,9,20,21,23,56,78]) #random array to remove any propietary info
+#replace airline name
+f = Fitter(afa, distributions=['cauchy'])
+f.fit()
+f.summary()
+f.fitted_param["cauchy"]
+#location x0, scale gamma
