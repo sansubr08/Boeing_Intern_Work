@@ -1,0 +1,81 @@
+import numpy as np
+
+import matplotlib.pyplot as plt
+
+from scipy.optimize import curve_fit
+
+ 
+
+def lognormal_curve(x, mu, sigma, A):
+
+    return A * np.exp(-(np.log(x) - mu) ** 2 / (2 * sigma ** 2)) / (x * sigma * np.sqrt(2 * np.pi))
+
+ 
+
+def cauchy_curve(x, x0, gamma, A):
+
+    return A * (1 / (np.pi * gamma * (1 + ((x - x0) / gamma) ** 2)))
+
+ 
+
+def logistic_curve(x, x0, k, A):
+
+    return A / (1 + np.exp(-(x - x0) / k))
+
+ 
+
+# Define the data points
+
+x_data = np.array([1, 2, 3, 4, 5])
+
+y_data = np.array([0.06, 0.33, 1.00, 0.33, 0.06])
+
+ 
+
+# Perform curve fitting for lognormal curve
+
+params_lognormal, _ = curve_fit(lognormal_curve, x_data, y_data)
+
+ 
+
+# Perform curve fitting for Cauchy curve
+
+params_cauchy, _ = curve_fit(cauchy_curve, x_data, y_data)
+
+ 
+
+# Perform curve fitting for logistic curve
+
+params_logistic, _ = curve_fit(logistic_curve, x_data, y_data)
+
+ 
+
+# Generate the curves
+
+x_curve = np.linspace(x_data[0], x_data[-1], 100)
+
+y_curve_lognormal = lognormal_curve(x_curve, *params_lognormal)
+
+y_curve_cauchy = cauchy_curve(x_curve, *params_cauchy)
+
+y_curve_logistic = logistic_curve(x_curve, *params_logistic)
+
+ 
+
+# Plot the data points and the fitted curves
+
+plt.plot(x_data, y_data, "bo", label="Data Points")
+
+plt.plot(x_curve, y_curve_lognormal, "r-", label="Lognormal Curve")
+
+plt.plot(x_curve, y_curve_cauchy, "g-", label="Cauchy Curve")
+
+plt.plot(x_curve, y_curve_logistic, "m-", label="Logistic Curve")
+
+plt.xlabel("x")
+
+plt.ylabel("y")
+
+plt.legend()
+
+plt.show()
